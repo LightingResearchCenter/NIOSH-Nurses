@@ -14,7 +14,7 @@ addpath(d12packDir);
 timestamp = datestr(now,'yyyy-mm-dd_HHMM');
 rootDir = '\\root\projects';
 prjDir  = fullfile(rootDir,'NIOSH_RedLightForShiftWorkers','daysimeter_data');
-srcDir  = fullfile(prjDir,'original_data','blue');
+srcDir  = fullfile(prjDir,'original_data','rawData');
 dbName  = ['uncropped_',timestamp,'.mat'];
 dbDir = fullfile(prjDir,'convertedData');
 dbPath  = fullfile(dbDir,dbName);

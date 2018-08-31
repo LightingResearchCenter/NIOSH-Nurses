@@ -4,32 +4,38 @@ library(magrittr)
 
 
 
-
-###transform summary to data.frame
-
-###Function to import a model
-df1 <- data.frame(anova(hitrate_model))
-###take df1 into a table and output into word
-df2 <- summary(lsmeans(hitrate_model, pairwise~ session, adjust="tukey", data = hit_rate))
-df2 <- lsmeans(hitrate_model, pairwise~ session, adjust="tukey", data = hit_rate)
-
-###The fitst data frame will be used for graphing
-df3<- data.frame(df[1])
-###this data frame will be used for finding significane differences
-df4<- data.frame(df[2])
-
-performance_outputList[[1]][[1]][[1]]
-performance_outputList[[1]][[1]][[2]]
-performance_outputList[[1]][[1]][[3]]
-
-performance_outputList[[1]][[2]][[2]][[1]]
-
-wordTableGenerator(outputList, TRUE)
-
-for(i in 1:length(outputList)){
-  print(outputList[[i]][[1]][[1]])
-  print(length(outputList[[i]][[2]]))
-  #print(length(outputList[[i]][[2]]))
+if(FALSE){
+  
+  ###transform summary to data.frame
+  
+  ###Function to import a model
+  df1 <- data.frame(anova(hitrate_model))
+  ###take df1 into a table and output into word
+  df2 <- summary(lsmeans(hitrate_model, pairwise~ session, adjust="tukey", data = hit_rate))
+  df2 <- lsmeans(hitrate_model, pairwise~ session, adjust="tukey", data = hit_rate)
+  
+  ###The fitst data frame will be used for graphing
+  df3<- data.frame(df[1])
+  ###this data frame will be used for finding significane differences
+  df4<- data.frame(df[2])
+  
+  performance_outputList[[1]][[1]][[1]]
+  performance_outputList[[1]][[1]][[2]]
+  performance_outputList[[1]][[1]][[3]]
+  
+  performance_outputList[[1]][[2]][[2]][[1]]
+}
+RUN <- FALSE
+if(RUN){
+  outputList <- actiwatchNorm_outputList
+  wordTableGenerator(outputList, FALSE)
+  
+  for(i in 1:length(outputList)){
+    print(outputList[[i]][[1]][[1]])
+    print(length(outputList[[i]][[2]]))
+    #print(length(outputList[[i]][[2]]))
+  }
+  
 }
 
 
@@ -69,7 +75,7 @@ wordTableGenerator <- function(outputList, post_hoc){
       
       # write the doc
       
-      dir <- "//root/projects/NIOSH_RedLightForShiftWorkers/performance/"
+      dir <- "//root/projects/NIOSH_RedLightForShiftWorkers/Performance_data/"
       filename <- paste0(dir,format(Sys.time(), "%Y-%m-%d_%H%M%S_"), "NursesPerformance-No-PostHoc.docx")
       
 
@@ -97,7 +103,7 @@ wordTableGenerator <- function(outputList, post_hoc){
       doc = addFlexTable(doc, MyFTable)
       
       # write the doc
-      dir <- "//root/projects/NIOSH_RedLightForShiftWorkers/performance/"
+      dir <- "//root/projects/NIOSH_RedLightForShiftWorkers/Performance_data/"
       filename <- paste0(dir,format(Sys.time(), "%Y-%m-%d_%H%M%S_"), "NursesPerformance-No-PostHoc.docx")
       
     }
@@ -108,7 +114,7 @@ wordTableGenerator <- function(outputList, post_hoc){
   writeDoc( doc, file = filename )
   
   # open the Word doc
-  browseURL(filename)
+ # browseURL(filename)
 }
 
 

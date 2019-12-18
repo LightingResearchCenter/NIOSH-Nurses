@@ -34,3 +34,7 @@ IVIS_outputList <- Output_lme_ISIV_nurses_study(ISIV, TRUE)
 
 performance_outputList
 
+
+table(acti_watch$subject)
+
+
